@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>ohmycash</title>
+{% endblock %}
+
+{% block body %}
+<div class="content">
+    <section class="section">
+        <div class="content is-medium is-parent">
+          <h1 class="title">
+            Добрый вечер, {{ name }}!
+          </h1>
+        </div>
+         <div class="card">
+              <div class="card-content">
+                <div class="block">
+                    <form method="post">
+                        <p class="title is-5">Сумма</p>
+                        <div class="field is-grouped">
+                            {% if value %}
+                            <div class="control is-expanded">
+                                <input name="amount" class="input" type="text" placeholder="0" value="{{ value }}">
+                            </div>
+                            {% else %}
+                            <div class="control is-expanded">
+                                <input name="amount" class="input" type="text" placeholder="0">
+                            </div>
+                            {% endif %}
+                        </div><br>
+
+                        <p class="title is-5">Кредит</p>
+                        <div class="field is-grouped">
+                            {% if value %}
+                            <div class="control is-expanded">
+                                <input name="loan" class="input" type="text" placeholder="0" value="{{ value }}">
+                            </div>
+                            {% else %}
+                            <div class="control is-expanded">
+                                <input name="loan" class="input" type="text" placeholder="0">
+                            </div>
+                            {% endif %}
+                        </div>
+                        <button class="button is-primary" type="submit">Рассчитать</button>
+                    </form>
+                </div>
+              </div>
+         </div>
+    </section>
+    <section class="section">
+         <div class="card has-background-black">
+              <div class="card-content">
+                <div class="content">
+                    <div class="subtitle has-text-grey-lighter">Свободные средства</div>
+                    <div class="title has-text-weight-bold has-text-success">{{ amount }}</div>
+                </div>
+              </div>
+         </div>
+      </section>
+</div>
+{% endblock %}
