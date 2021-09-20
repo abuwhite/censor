@@ -1,55 +1,59 @@
-from flask import Flask, render_template, request
-import locale
+from flask import Flask, render_template, request, redirect
+from utils import engine
 
 app = Flask(__name__)
 
-locale.setlocale(locale.LC_ALL, "kk_KZ")
+
+user = 'censor'
 
 
-user = 'Какое-то имя'
-MONEY = 0
-AMOUNT = 0
-
-# formatted = locale.currency(MONEY)
-
-
-class Formatted(object):
-    def __init__(self, value=0):
-        self.money = value
-
-    def money(self):
-        return self.money
-
-    def currency(self):
-        return locale.currency(self.money)
-
-    def add_money(self, value):
-        if isinstance(value, int):
-            self.money = value
-        else:
-            print('Error')
-
-formatted = Formatted()
 
 
 @app.route('/')
 def index():
-    return render_template('index.html', name=user, amount=formatted.currency())
+    return render_template('index.html', name=user, amount=200000)
+
+@app.route('/alpine')
+def test():
+    return render_template('alpine.html')
 
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    pass
-    # print(request.form)
-    # print(request.form['amount'])
-    # print(request.form['loan'])
+    print(request.form)
+    print('[AMOUNT FORM]', request.form['amount'], type(request.form['amount']))
+    print('[LOAN FORM]', request.form['loan'], type(request.form['loan']))
+    print('[CAPITAL FORM]', request.form['capital'], type(request.form['capital']))
+    # amount = int(request.form['amount'])
+    # loan = int(request.form['loan'])
+    #
+    # bank = engine.Bank(
+    #     _amount=amount,
+    #     _loan=loan,
+    #     _capital=60
+    # )
+    #
+    # print('[AMOUNT]', bank.amount)
+    # print('[LOAN]', bank.loan)
+    # print('[CAPITAL]', bank.capital)
+
+    # bank.capital = 90
+    #
+    # print('[NEW CAPITAL]', bank.capital)
+
 
     # if request.form['amount'] == '':
-    #     formatted.add_money(0)
+    #     bank.add(0)
     # else:
-    #     formatted.add_money(int(request.form['text']))
+    #     bank.add(int(request.form['amount']))
+    #
+    # if request.form['loan'] == '':
+    #     bank.remove(0)
+    # else:
+    #     bank.remove(int(request.form['loan']))
 
-    # return render_template('index.html', name=user, amount=formatted.currency(), value=formatted.money)
+
+    return redirect('/')
 
 
 if __name__ == '__main__':
