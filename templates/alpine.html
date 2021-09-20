@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do на Alpine.js</title>
+    <style>body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.app {
+  min-width: 300px;
+  max-width: 700px;
+  border-radius: 2px;
+  padding: 20px;
+  font-size: 1.125rem;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
+ul {
+  margin: 1rem 0;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+li:hover {
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+}
+
+ul li::before {
+  content: "◻";
+  display: inline-block;
+  margin-right: 0.2rem;
+}
+
+.add-todo {
+  display: flex;
+}
+
+.add-todo input {
+  flex: 1;
+  padding: 0.4rem;
+  padding-left: 0.5rem;
+}
+
+.add-todo button {
+  margin-left: 0.5rem;
+  padding: 0 10px;
+  background: #3182ce;
+  color: white;
+  border: none;
+  transition: all 0.3s;
+}
+
+.add-todo button:hover {
+  background: #2a4365;
+  transition: all 0.3s;
+}
+
+.title {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.delete-todo {
+  color: red;
+  font-weight: bold;
+  font-size: 1.25rem;
+  float: right;
+}
+
+.completed .title {
+  text-decoration: line-through;
+}
+
+ul li.completed::before {
+  content: "✔";
+}
+</style>
+    <script
+      src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.3.5/dist/alpine.min.js"
+      defer
+    ></script>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div x-data="todos()" x-init="fetchTodos()" class="app">
+      <h1>Планы на сегодня:</h1>
+      <ul>
+        <template x-for="todo in todos" :key="todo.id">
+          <li
+            @click="toggleTodo(todo.id)"
+            :class="{'completed': todo.completed}"
+          >
+            <span x-text="todo.id" class="title"></span>
+            <span x-text="todo.title" class="title"></span>
+            <span @click="deleteTodo(todo.id)" class="delete-todo"
+              >&times;</span
+            >
+          </li>
+        </template>
+      </ul>
+      <div class="add-todo">
+        <input type="text" x-model="inputValue" placeholder="Новая задача" />
+        <input type="text" x-model="inputValue" placeholder="Новая задача" />
+        <button @click="addTodo()">Добавить</button>
+      </div>
+    </div>
+
+    <script>
+      function todos() {
+        return {
+          todos: [],
+          inputValue: "",
+          toggleTodo: function(id) {
+            var todo = this.todos.find(todo => todo.id === id);
+            if (!todo) return;
+            todo.completed = !todo.completed;
+          },
+          addTodo: function() {
+            if (!this.inputValue) {
+              return;
+            }
+
+            this.todos.push({
+              id: Date.now(),
+              title: this.inputValue,
+              completed: false
+            });
+            this.inputValue = "";
+          },
+          deleteTodo: function(id) {
+            this.todos = this.todos.filter(todo => todo.id !== id);
+          },
+          fetchTodos: function() {
+            fetch("https://jsonplaceholder.typicode.com/todos")
+              .then(response => response.json())
+              .then(data => {
+                this.todos = data.slice(0, 10);
+              });
+          }
+        };
+      }
+    </script>
+  </body>
+</html>

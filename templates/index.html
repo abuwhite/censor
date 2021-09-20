@@ -1,61 +1,116 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>ohmycash</title>
+<title>censor</title>
 {% endblock %}
 
 {% block body %}
-<div class="content">
-    <section class="section">
-        <div class="content is-medium is-parent">
-          <h1 class="title">
-            Добрый вечер, {{ name }}!
-          </h1>
-        </div>
-         <div class="card">
-              <div class="card-content">
-                <div class="block">
-                    <form method="post">
-                        <p class="title is-5">Сумма</p>
-                        <div class="field is-grouped">
-                            {% if value %}
-                            <div class="control is-expanded">
-                                <input name="amount" class="input" type="text" placeholder="0" value="{{ value }}">
+    <div class="section">
+        <p class="title is-1">Welcome to {{ name }}!</p>
+        <div class="block">
+            <form method="post">
+                <p class="label is-large has-text-black">Калькулятор доходов</p>
+                    <div class="field">
+                      <label class="label">Зарплата</label>
+                      {% if value %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded has-icons-right">
+                              <input name="amount" class="input is-medium" type="tel" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-tenge"></i>
+                              </span>
                             </div>
-                            {% else %}
-                            <div class="control is-expanded">
-                                <input name="amount" class="input" type="text" placeholder="0">
+                          </div>
+                      {% else %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded has-icons-right">
+                              <input name="amount" class="input is-medium" type="number" placeholder="0" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-tenge"></i>
+                              </span>
                             </div>
-                            {% endif %}
-                        </div><br>
-
-                        <p class="title is-5">Кредит</p>
-                        <div class="field is-grouped">
-                            {% if value %}
-                            <div class="control is-expanded">
-                                <input name="loan" class="input" type="text" placeholder="0" value="{{ value }}">
-                            </div>
-                            {% else %}
-                            <div class="control is-expanded">
-                                <input name="loan" class="input" type="text" placeholder="0">
-                            </div>
-                            {% endif %}
                         </div>
-                        <button class="button is-primary" type="submit">Рассчитать</button>
-                    </form>
-                </div>
-              </div>
-         </div>
-    </section>
-    <section class="section">
-         <div class="card has-background-black">
-              <div class="card-content">
-                <div class="content">
-                    <div class="subtitle has-text-grey-lighter">Свободные средства</div>
-                    <div class="title has-text-weight-bold has-text-success">{{ amount }}</div>
-                </div>
-              </div>
-         </div>
-      </section>
-</div>
+                      {% endif %}
+                    </div>
+                    <div class="field">
+                      <label class="label">Кредит</label>
+                      {% if value %}
+                        <div class="field has-addons has-icons-right">
+                            <div class="control is-expanded">
+                              <input name="loan" class="input is-medium" type="number" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-tenge"></i>
+                              </span>
+                            </div>
+                          </div>
+                      {% else %}
+                        <div class="field has-addons">
+                            <div class="control is-expanded has-icons-right">
+                              <input name="loan" class="input is-medium" type="number" placeholder="0" value="0" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-tenge"></i>
+                              </span>
+                            </div>
+                          </div>
+                      {% endif %}
+                    </div>
+                    <div class="field">
+                      <label class="label">Отложить</label>
+                      {% if value %}
+                          <div class="field has-addons">
+                            <div class="control is-expanded has-icons-right">
+                              <input name="capital" class="input is-medium" type="number" placeholder="10" value="{{ value }}" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-percent"></i>
+                              </span>
+                            </div>
+                          </div>
+                      {% else %}
+                          <div class="field has-addons">
+                            <div class="control is-expanded has-icons-right">
+                              <input name="capital" class="input is-medium" type="number" placeholder="10" value="10" required pattern="/^\d+$/">
+                              <span class="icon is-small is-right">
+                                <i class="fas fa-percent"></i>
+                              </span>
+                            </div>
+                          </div>
+                      {% endif %}
+                    </div>
+
+                    <button class="button is-medium is-info is-light is-fullwidth" type="submit">Рассчитать</button>
+
+
+            </form>
+        </div>
+    </div>
+        <div class="section">
+            <p class="subtitle is-5 has-text-weight-bold has-text-black">За 6 месяцев вы сможете собрать</p>
+            <p class="title is-1 has-text-weight-bold has-text-black">{{ amount }}</p>
+
+            <hr>
+            <table class="table is-fullwidth">
+              <thead>
+              <tr>
+                  <th>Наименование</th>
+                  <th>Сумма</th>
+              </tr>
+              </thead>
+              <tbody class="has-text-info">
+                <tr>
+                  <td>Обязательные платежи</td>
+                  <td>40 000 KZT</td>
+                </tr>
+                <tr>
+                  <td>Сбережения</td>
+                  <td>20 000 KZT</td>
+                </tr>
+                <tr>
+                  <td>Свободные средства</td>
+                  <td>80 000 KZT</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+
 {% endblock %}
