@@ -6,23 +6,32 @@
 
 {% block body %}
     <div class="section">
-        <p class="subtitle is-5 has-text-weight-bold has-text-black">За 6 месяцев вы сможете собрать</p>
-        <h1 class="title is-3 has-text-black">200 000 тнг.</h1>
         <table class="table is-fullwidth">
           <tbody>
-            <tr>
-              <td class="has-text-weight-bold">Обязательные платежи</td>
-              <td>40 000 KZT</td>
-            </tr>
-            <tr>
-              <td class="has-text-weight-bold">Сбережения</td>
-              <td>20 000 KZT</td>
-            </tr>
-            <tr>
-              <td class="has-text-weight-bold">Свободные средства</td>
-              <td>80 000 KZT</td>
-            </tr>
+            {% if loan %}
+                <tr>
+                  <td class="has-text-weight-bold">Обязательные платежи</td>
+                  <td>{{ loan }}</td>
+                </tr>
+            {% endif %}
+            {% if capital %}
+                <tr>
+                    <td class="has-text-weight-bold">Сбережения</td>
+                    <td>{{ capital }}</td>
+                </tr>
+            {% endif %}
+            {% if amount %}
+                <tr>
+                    <td class="has-text-weight-bold">Свободные средства</td>
+                    <td>{{ amount }}</td>
+                </tr>
+            {% endif %}
           </tbody>
         </table>
+
+        <h1 class="title is-3 has-text-black">{{ month }}</h1>
+        <p class="subtitle is-6 has-text-black">Столько вы соберете за год, если будете откладывать ежемесячно {{ percent }}% дохода.</p>
+        <p><a class="inherit-link-main" href="/">Рассчитать ещё</a></p>
     </div>
+
 {% endblock %}
