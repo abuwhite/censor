@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>censor</title>
+<title>main</title>
 {% endblock %}
 
 {% block body %}
     <div class="section">
-        <p class="title is-1">Welcome to {{ name }}!</p>
+        <h1 class="title is-3 has-text-black">Калькулятор доходов</h1>
         <div class="block">
             <form method="post">
-                <p class="label is-large has-text-black">Калькулятор доходов</p>
                     <div class="field">
-                      <label class="label">Зарплата</label>
+                      <label class="label has-text-black">Зарплата</label>
                       {% if value %}
                         <div class="field has-addons">
                             <div class="control is-expanded has-icons-right">
@@ -59,7 +58,7 @@
                       {% if value %}
                           <div class="field has-addons">
                             <div class="control is-expanded has-icons-right">
-                              <input name="capital" class="input is-medium" type="number" placeholder="10" value="{{ value }}" required pattern="/^\d+$/">
+                              <input name="capital" class="input is-medium" type="number" placeholder="60" value="{{ value }}" required pattern="/^\d+$/">
                               <span class="icon is-small is-right">
                                 <i class="fas fa-percent"></i>
                               </span>
@@ -68,7 +67,7 @@
                       {% else %}
                           <div class="field has-addons">
                             <div class="control is-expanded has-icons-right">
-                              <input name="capital" class="input is-medium" type="number" placeholder="10" value="10" required pattern="/^\d+$/">
+                              <input name="capital" class="input is-medium" type="number" placeholder="60" value="60" required pattern="/^\d+$/">
                               <span class="icon is-small is-right">
                                 <i class="fas fa-percent"></i>
                               </span>
@@ -77,40 +76,8 @@
                       {% endif %}
                     </div>
 
-                    <button class="button is-medium is-info is-light is-fullwidth" type="submit">Рассчитать</button>
-
-
+                    <button class="button has-text-weight-bold is-info is-large is-fullwidth" type="submit">Рассчитать</button>
             </form>
         </div>
     </div>
-        <div class="section">
-            <p class="subtitle is-5 has-text-weight-bold has-text-black">За 6 месяцев вы сможете собрать</p>
-            <p class="title is-1 has-text-weight-bold has-text-black">{{ amount }}</p>
-
-            <hr>
-            <table class="table is-fullwidth">
-              <thead>
-              <tr>
-                  <th>Наименование</th>
-                  <th>Сумма</th>
-              </tr>
-              </thead>
-              <tbody class="has-text-info">
-                <tr>
-                  <td>Обязательные платежи</td>
-                  <td>40 000 KZT</td>
-                </tr>
-                <tr>
-                  <td>Сбережения</td>
-                  <td>20 000 KZT</td>
-                </tr>
-                <tr>
-                  <td>Свободные средства</td>
-                  <td>80 000 KZT</td>
-                </tr>
-              </tbody>
-            </table>
-        </div>
-
-
 {% endblock %}

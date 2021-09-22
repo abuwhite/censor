@@ -7,7 +7,7 @@ class Bank(object):
     def __init__(self,
                  _amount=0,
                  _loan=0,
-                 _capital=0
+                 _capital=60
                  ):
         self._amount = _amount
         self._loan = _loan
@@ -40,7 +40,3 @@ class Bank(object):
     #
     # def currency(self):
     #     return locale.currency(self.money)
-
-b = Bank()
-b.amount=2
-print(b.amount)
