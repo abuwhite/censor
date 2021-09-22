@@ -10,8 +10,6 @@ from babel import numbers
 
 app = Flask(__name__)
 
-user = Bank()
-
 
 def currency(num):
     return numbers.format_currency(num, 'KZT', locale='kk_KZ')
@@ -35,7 +33,6 @@ def my_form_post():
 
 @app.route('/info')
 def test():
-    print(user.percent)
     return render_template('info.html',
                            percent=user.percent,
                            month=currency(get_month_amount(user.capital)),
