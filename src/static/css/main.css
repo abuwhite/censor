@@ -19,11 +19,6 @@ body {
   background: #e6f2ff;
 }
 
-footer {
-  flex: 0 0 auto;
-  padding: 0.56rem 3%
-}
-
 .subtitle.is-5 {
     font-size: 16px;
 }
@@ -58,14 +53,25 @@ footer {
 
 .table td,
 .table th {
-  border: 1px solid #dbdbdb;
+  border: none;
   border-width: 0 0 1px;
-  padding: 14px 0;
+  padding: 4px 0;
   vertical-align: top;
+}
+
+.table {
+    background-color: #fff;
+    color: #000;
 }
 
 .title.is-3 {
   margin-bottom: 2.2rem;
+  font-size: 36px;
+  font-weight: 800;
+}
+
+.title.is-4 {
+  margin-bottom: 14px;
   font-size: 36px;
   font-weight: 800;
 }
@@ -118,8 +124,7 @@ footer {
 }
 
 .control.has-icons-left .icon, .control.has-icons-right .icon {
-  /*color: rgb(171 171 171);*/
-  color: #F9F9FB;
+  color: rgb(171 171 171);
   height: 2.5em;
   pointer-events: none;
   position: absolute;
@@ -130,6 +135,30 @@ footer {
 
 .section {
   flex: 1 0 auto;
-  padding: 2rem 0.72rem;
+  padding: 6%;
 }
 
+footer {
+  flex: 0 0 auto;
+  padding: 3% 6%
+}
+
+.table.secondary {
+    text-align: right;
+}
+
+.title.is-6 {
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.title:not(.is-spaced)+.subtitle {
+    margin-top: -8px;
+}
+
+.container {
+    flex-grow: 1;
+    margin: 32px auto;
+    position: relative;
+    width: auto;
+}

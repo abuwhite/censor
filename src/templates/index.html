@@ -5,82 +5,80 @@
 {% endblock %}
 
 {% block body %}
-    <div class="section">
-        <h1 class="title is-3 has-text-black">/censor</h1>
-        <div class="block">
-            <form method="post">
-                    <div class="field">
-                      <label class="label has-text-black">Доходы</label>
-                      <p class="subtitle is-5 has-text-black">Укажите все регулярные источники дохода.</p>
-                      {% if value %}
-                        <div class="field has-addons">
-                            <div class="control is-expanded has-icons-right">
-                              <input name="amount" class="input is-medium" type="tel" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-tenge"></i>
-                              </span>
-                            </div>
-                          </div>
-                      {% else %}
-                        <div class="field has-addons">
-                            <div class="control is-expanded has-icons-right">
-                              <input name="amount" class="input is-medium" type="number" placeholder="0" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-tenge"></i>
-                              </span>
-                            </div>
+    <div class="block">
+        <form method="post">
+                <div class="field">
+                  <label class="label has-text-black">Доходы</label>
+                  <p class="subtitle is-5 has-text-black">Укажите все регулярные источники дохода.</p>
+                  {% if value %}
+                    <div class="field has-addons">
+                        <div class="control is-expanded has-icons-right">
+                          <input name="amount" class="input is-medium" type="tel" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-tenge"></i>
+                          </span>
                         </div>
-                      {% endif %}
+                      </div>
+                  {% else %}
+                    <div class="field has-addons">
+                        <div class="control is-expanded has-icons-right">
+                          <input name="amount" class="input is-medium" type="number" placeholder="0" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-tenge"></i>
+                          </span>
+                        </div>
                     </div>
-                    <div class="field">
-                      <label class="label">Обязательные расходы</label>
-                      <p class="subtitle is-5 has-text-black">Внесите сюда регулярные траты, которые даже в случае потери работы вы не сможете уменьшить.</p>
-                      {% if value %}
-                        <div class="field has-addons has-icons-right">
-                            <div class="control is-expanded">
-                              <input name="loan" class="input is-medium" type="number" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-tenge"></i>
-                              </span>
-                            </div>
-                          </div>
-                      {% else %}
-                        <div class="field has-addons">
-                            <div class="control is-expanded has-icons-right">
-                              <input name="loan" class="input is-medium" type="number" placeholder="0" value="0" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-tenge"></i>
-                              </span>
-                            </div>
-                          </div>
-                      {% endif %}
-                    </div>
-                    <div class="field">
-                      <label class="label">Буду откладывать</label>
-                      <p class="subtitle is-5 has-text-black">Укажите количество процентов, которые вы будете откладывать. Рекомендую начать с 10%.</p>
-                      {% if value %}
-                          <div class="field has-addons">
-                            <div class="control is-expanded has-icons-right">
-                              <input name="capital" class="input is-medium" type="number" placeholder="60" value="{{ value }}" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-percent"></i>
-                              </span>
-                            </div>
-                          </div>
-                      {% else %}
-                          <div class="field has-addons">
-                            <div class="control is-expanded has-icons-right">
-                              <input name="capital" class="input is-medium" type="number" placeholder="60" value="60" required pattern="/^\d+$/">
-                              <span class="icon is-small is-right">
-                                <i class="fas fa-percent"></i>
-                              </span>
-                            </div>
-                          </div>
-                      {% endif %}
-                    </div>
+                  {% endif %}
+                </div>
+                <div class="field">
+                  <label class="label">Обязательные расходы</label>
+                  <p class="subtitle is-5 has-text-black">Внесите сюда регулярные траты, которые даже в случае потери работы вы не сможете уменьшить.</p>
+                  {% if value %}
+                    <div class="field has-addons has-icons-right">
+                        <div class="control is-expanded">
+                          <input name="loan" class="input is-medium" type="number" placeholder="0" value="{{ value }}" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-tenge"></i>
+                          </span>
+                        </div>
+                      </div>
+                  {% else %}
+                    <div class="field has-addons">
+                        <div class="control is-expanded has-icons-right">
+                          <input name="loan" class="input is-medium" type="number" placeholder="0" value="0" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-tenge"></i>
+                          </span>
+                        </div>
+                      </div>
+                  {% endif %}
+                </div>
+                <div class="field">
+                  <label class="label">Буду откладывать</label>
+                  <p class="subtitle is-5 has-text-black">Укажите количество процентов, которые вы будете откладывать. Рекомендую начать с 10%.</p>
+                  {% if value %}
+                      <div class="field has-addons">
+                        <div class="control is-expanded has-icons-right">
+                          <input name="capital" class="input is-medium" type="number" placeholder="60" value="{{ value }}" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-percent"></i>
+                          </span>
+                        </div>
+                      </div>
+                  {% else %}
+                      <div class="field has-addons">
+                        <div class="control is-expanded has-icons-right">
+                          <input name="capital" class="input is-medium" type="number" placeholder="60" value="60" required pattern="/^\d+$/">
+                          <span class="icon is-small is-right">
+                            <i class="las la-percent"></i>
+                          </span>
+                        </div>
+                      </div>
+                  {% endif %}
+                </div>
 
-                    <button class="button is-info is-large is-fullwidth" type="submit">Рассчитать</button>
-            </form>
-        </div>
+                <button class="button is-info is-large is-fullwidth" type="submit">Рассчитать</button>
+
+        </form>
     </div>
 {% endblock %}

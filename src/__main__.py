@@ -1,3 +1,6 @@
+"""Main module engine."""
+
+
 from flask import (
     Flask,
     render_template,
@@ -5,26 +8,29 @@ from flask import (
     redirect
 )
 
-from src.utils.bank import Bank, get_month_amount
+from src.utils.bank import Bank
 from babel import numbers
 
 app = Flask(__name__)
 
 
 def currency(num):
+    """Return format number."""
     return numbers.format_currency(num, 'KZT', locale='kk_KZ')
 
 
 @app.route('/')
 def index():
+    """Generate start page."""
     return render_template('index.html')
 
 
 @app.route('/', methods=['POST'])
-def my_form_post():
+def index_post():
+    """POST Form function."""
     global user
-    user = Bank(_amount=int(request.form['amount']),
-                _loan=int(request.form['loan']),
+    user = Bank(_income=int(request.form['amount']),
+                _expenses=int(request.form['loan']),
                 _percent=int(request.form['capital'])
                 )
 
@@ -32,13 +38,14 @@ def my_form_post():
 
 
 @app.route('/info')
-def test():
+def info():
+    """Generate info page."""
     return render_template('info.html',
-                           percent=user.percent,
-                           month=currency(get_month_amount(user.capital)),
-                           loan=currency(user.loan),
+                           balance=currency(user.balance),
+                           day=currency(user.balance_for_day),
+                           expenses=currency(user.expenses),
                            capital=currency(user.capital),
-                           amount=currency(user.free)
+                           year=currency(user.capital_year)
                            )
 
 

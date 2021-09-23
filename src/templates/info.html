@@ -5,33 +5,47 @@
 {% endblock %}
 
 {% block body %}
-    <div class="section">
-        <table class="table is-fullwidth">
-          <tbody>
-            {% if loan %}
-                <tr>
-                  <td class="has-text-weight-bold">Обязательные платежи</td>
-                  <td>{{ loan }}</td>
-                </tr>
-            {% endif %}
-            {% if capital %}
-                <tr>
-                    <td class="has-text-weight-bold">Сбережения</td>
-                    <td>{{ capital }}</td>
-                </tr>
-            {% endif %}
-            {% if amount %}
-                <tr>
-                    <td class="has-text-weight-bold">Свободные средства</td>
-                    <td>{{ amount }}</td>
-                </tr>
-            {% endif %}
-          </tbody>
-        </table>
-
-        <h1 class="title is-3 has-text-black">{{ month }}</h1>
-        <p class="subtitle is-6 has-text-black">Столько вы соберете за год, если будете откладывать ежемесячно {{ percent }}% дохода.</p>
-        <p><a class="inherit-link-main" href="/">Рассчитать ещё</a></p>
+    <div class="container">
+        <h1 class="title is-4 has-text-black">{{ year }}</h1>
+        <p class="subtitle is-6 has-text-black">Именно столько вы накопите за год, если будете откладывать по {{ capital }} в месяц.</p>
     </div>
 
+    <div class="container">
+        <h1 class="title is-6 has-text-black">Распределение на месяц</h1>
+        <table class="table is-fullwidth">
+      <tbody>
+        {% if not expenses.startswith('0') %}
+            <tr>
+              <td>Обязательные платежи:</td>
+              <td class="table secondary">{{ expenses }}</td>
+            </tr>
+        {% endif %}
+        {% if capital %}
+            <tr>
+                <td>Положить на депозит:</td>
+                <td class="table secondary">{{ capital }}</td>
+            </tr>
+        {% endif %}
+      </tbody>
+    </table>
+        <table class="table is-fullwidth">
+      <tbody>
+        {% if balance %}
+            <tr>
+                <td>Лимит на месяц:</td>
+                <td class="table secondary">{{ balance }}</td>
+            </tr>
+        {% endif %}
+        {% if day %}
+            <tr>
+                <td>Бюджет на день:</td>
+                <td class="table secondary" style="font-size: 24px;
+    font-weight: 600;">{{ day }}</td>
+            </tr>
+        {% endif %}
+      </tbody>
+    </table>
+    </div>
+
+    <p><a class="inherit-link-main" href="/">Рассчитать ещё</a></p>
 {% endblock %}

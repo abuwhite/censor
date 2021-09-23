@@ -16,6 +16,7 @@ class Bank(object):
         self._income = _income
         self._expenses = _expenses
         self._percent = _percent
+        self._balance = 0
 
     @property
     def income(self):
@@ -34,7 +35,7 @@ class Bank(object):
 
     @property
     def capital(self):
-        """Получить сумму свободных средств по формуле
+        """Получить сумму накоплений по формуле
 
         ((Доход - Расход) / 100) * Процент
 
@@ -42,11 +43,18 @@ class Bank(object):
         return int(((self._income - self._expenses) / 100) * self._percent)
 
     @property
-    def free(self):
+    def balance(self):
         """Получить свободную сумму после всех вычетов."""
-        return self._income - self._expenses - self.capital
+        self._balance = self._income - self._expenses - self.capital
+        print(self._balance)
+        return self._balance
+
+    @property
+    def balance_for_day(self):
+        """Получить сумму свободных денег на день."""
+        return self._balance / 31
 
     @property
     def capital_year(self):
-        """Получить сумму накоплений за 6 месяцев."""
-        return self.capital * 6
+        """Получить сумму накоплений за 12 месяцев."""
+        return self.capital * 12
