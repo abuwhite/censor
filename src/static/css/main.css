@@ -20,6 +20,7 @@ body {
 }
 
 .subtitle.is-5 {
+    color: rgba(32,35,51,.7);
     font-size: 16px;
 }
 
@@ -41,7 +42,7 @@ body {
 
 .box:not(:last-child), .content:not(:last-child), .notification:not(:last-child), .progress:not(:last-child), .table:not(:last-child), .table-container:not(:last-child), .title:not(:last-child),
 .subtitle:not(:last-child), .block:not(:last-child), .breadcrumb:not(:last-child), .level:not(:last-child), .message:not(:last-child), .pagination:not(:last-child), .tabs:not(:last-child) {
-  margin-bottom: 14px;
+  margin-bottom: 16px;
 }
 
 .button.is-info {
@@ -102,8 +103,8 @@ body {
 }
 
 .input, .select select, .textarea {
-    background-color: #F9F9FB;
-    border-color: #F9F9FB;
+    background-color: rgba(32,35,51,.05);
+    border-color: transparent;
     border-radius: 8px;
     color: #363636;
 }
@@ -116,7 +117,7 @@ body {
 }
 
 .label:not(:last-child) {
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 
 .field:not(:last-child) {
@@ -124,7 +125,7 @@ body {
 }
 
 .control.has-icons-left .icon, .control.has-icons-right .icon {
-  color: rgb(171 171 171);
+  color: rgba(32,35,51,.3);
   height: 2.5em;
   pointer-events: none;
   position: absolute;
