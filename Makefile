@@ -34,7 +34,7 @@ pytest:
 	poetry run pytest oasis tests/
 
 cov-check:
-	poetry run pytest --cov=oasis tests/
+	poetry run pytest --cov=src tests/
 
 pytest-cov:
-	@poetry run pytest --cov=oasis --cov-config .coveragerc tests/ -sq --cov-report xml
+	@poetry run pytest --cov=src --cov-config .coveragerc tests/ -sq --cov-report xml
