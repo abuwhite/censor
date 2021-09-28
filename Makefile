@@ -31,7 +31,7 @@ test:
 	make pytest-cov
 
 pytest:
-	poetry run pytest oasis tests/
+	poetry run pytest src tests/
 
 cov-check:
 	poetry run pytest --cov=src tests/
