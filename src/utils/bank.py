@@ -2,11 +2,7 @@
 
 
 class BankAccount(object):
-    def __init__(self,
-                 _income=0,
-                 _expenses=0,
-                 _percent=10
-                 ):
+    def __init__(self, _income=0, _expenses=0, _percent=10):
         """
 
         :param _income: Доход

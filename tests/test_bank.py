@@ -16,10 +16,7 @@ def test_create_account():
 
 def test_bank_account():
     """Test capital, balance and expenses."""
-    actual = BankAccount(_income=200000,
-                         _expenses=25000,
-                         _percent=60
-                         )
+    actual = BankAccount(_income=200000, _expenses=25000, _percent=60)
 
     assert actual.income == 200000
     assert actual.capital == 105000
