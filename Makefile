@@ -11,8 +11,8 @@ debug:
 	python3 -m src
 
 install:
-	poetry install
-	make build
+	@poetry install
+	@poetry build
 	python3 -m pip install dist/*.whl --force-reinstall
 
 clean:
