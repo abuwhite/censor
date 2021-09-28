@@ -1,8 +1,16 @@
 [tool.poetry]
-name = "ohmycash"
-version = "0.1.0"
-description = ""
-authors = ["Boris"]
+name = "censor"
+version = "0.0.3"
+description = "A calculator for planning expenses for a month."
+authors = ["Boris Zhenikhov <znhv@yandex.com>"]
+
+license = "MIT"
+
+readme = "README.md"
+
+packages = [
+  { include = "src" },
+]
 
 [tool.poetry.dependencies]
 python = "^3.8"
