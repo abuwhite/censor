@@ -22,7 +22,7 @@ jobs:
           pip install poetry
           make install
   Test:
-    name: linter & test
+    needs: Linting
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
