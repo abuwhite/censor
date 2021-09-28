@@ -29,9 +29,13 @@ format: clean
 test:
 	make pytest
 	make cov-pytest
+	make pytest-cov
 
 pytest:
 	poetry run pytest src tests/
 
 cov-pytest:
 	poetry run pytest --cov=src tests/
+
+pytest-cov:
+	@poetry run pytest --cov=oasis --cov-config .coveragerc tests/ -sq --cov-report xml
