@@ -8,7 +8,7 @@ from flask import (
     redirect
 )
 
-from src.utils.bank import Bank
+from src.utils.bank import BankAccount
 from babel import numbers
 
 app = Flask(__name__)
@@ -29,10 +29,10 @@ def index():
 def index_post():
     """POST Form function."""
     global user
-    user = Bank(_income=int(request.form['amount']),
-                _expenses=int(request.form['loan']),
-                _percent=int(request.form['capital'])
-                )
+    user = BankAccount(_income=int(request.form['amount']),
+                       _expenses=int(request.form['loan']),
+                       _percent=int(request.form['capital'])
+                       )
 
     return redirect('/info')
 

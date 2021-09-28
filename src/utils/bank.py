@@ -1,7 +1,7 @@
-"""Модуль Банка."""
+"""Account module."""
 
 
-class Bank(object):
+class BankAccount(object):
     def __init__(self,
                  _income=0,
                  _expenses=0,
@@ -46,7 +46,6 @@ class Bank(object):
     def balance(self):
         """Получить свободную сумму после всех вычетов."""
         self._balance = self._income - self._expenses - self.capital
-        print(self._balance)
         return self._balance
 
     @property
