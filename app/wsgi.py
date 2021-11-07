@@ -3,10 +3,12 @@
 
 from flask import Flask, render_template, request, redirect
 
-from src.utils.bank import BankAccount
+from main.bank import BankAccount
 from babel import numbers
 
 app = Flask(__name__)
+app.jinja_env.auto_reload = True
+app.config['TEMPLATES_AUTO_RELOAD'] = True
 
 
 def currency(num):
@@ -17,7 +19,7 @@ def currency(num):
 @app.route("/")
 def index():
     """Generate start page."""
-    return render_template("index.html")
+    return render_template("main/index.html")
 
 
 @app.route("/", methods=["POST"])
@@ -37,7 +39,7 @@ def index_post():
 def info():
     """Generate info page."""
     return render_template(
-        "info.html",
+        "main/info.html",
         balance=currency(user.balance),
         day=currency(user.balance_for_day),
         expenses=currency(user.expenses),
@@ -47,4 +49,4 @@ def info():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0")
+    app.run(host="0.0.0.0", debug=True)

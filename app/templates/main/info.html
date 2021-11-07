@@ -1,16 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 
 {% block head %}
 <title>info</title>
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <div class="block">
+            <img src="static/imgs/rebuild.svg">
+        </div>
+      </div>
+      <div class="column">
+        <div class="container">
         <h1 class="title is-4 has-text-black">{{ year }}</h1>
         <p class="subtitle is-6 has-text-black">Именно столько вы накопите за год, если будете откладывать по {{ capital }} в месяц.</p>
     </div>
-
-    <div class="container">
+        <div class="container">
         <h1 class="title is-6 has-text-black">Распределение на месяц</h1>
         <table class="table is-fullwidth">
       <tbody>
@@ -46,6 +52,9 @@
       </tbody>
     </table>
     </div>
+      </div>
+    </div>
+
 
     <p><a class="inherit-link-main" href="/">Рассчитать ещё</a></p>
 {% endblock %}

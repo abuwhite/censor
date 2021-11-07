@@ -1,15 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'layouts/base.html' %}
 
 {% block head %}
 <title>main</title>
 {% endblock %}
 
 {% block body %}
-    <div class="block">
-        <form method="post">
+    <div class="columns">
+      <div class="column is-two-thirds">
+        <div class="block">
+            <img src="static/imgs/rebuild.svg">
+        </div>
+      </div>
+      <div class="column">
+        <div class="block">
+            <form method="post">
                 <div class="field">
-                  <label class="label has-text-black">Доходы</label>
-                  <p class="subtitle is-5">Укажите все регулярные источники дохода.</p>
+                  <h2 class="h2">Доходы</h2>
+                  <p class="h2-subheader">Укажите все регулярные источники дохода.</p>
                   {% if value %}
                     <div class="field has-addons">
                         <div class="control is-expanded has-icons-right">
@@ -31,8 +38,8 @@
                   {% endif %}
                 </div>
                 <div class="field">
-                  <label class="label">Обязательные расходы</label>
-                  <p class="subtitle is-5">Внесите сюда регулярные траты, которые даже в случае потери работы вы не сможете уменьшить.</p>
+                  <h2 class="h2">Обязательные расходы</h2>
+                  <p class="h2-subheader">Внесите сюда регулярные траты, которые даже в случае потери работы вы не сможете уменьшить.</p>
                   {% if value %}
                     <div class="field has-addons has-icons-right">
                         <div class="control is-expanded">
@@ -54,8 +61,8 @@
                   {% endif %}
                 </div>
                 <div class="field">
-                  <label class="label">Буду откладывать</label>
-                  <p class="subtitle is-5">Укажите количество процентов, которые вы будете откладывать. Рекомендую начать с 10%.</p>
+                  <h2 class="h2">Буду откладывать</h2>
+                  <p class="h2-subheader">Укажите количество процентов, которые вы будете откладывать. Рекомендую начать с 10%.</p>
                   {% if value %}
                       <div class="field has-addons">
                         <div class="control is-expanded has-icons-right">
@@ -80,5 +87,7 @@
                 <button class="button is-info is-large is-fullwidth" type="submit">Рассчитать</button>
 
         </form>
+        </div>
+      </div>
     </div>
 {% endblock %}

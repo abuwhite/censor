@@ -1,6 +1,6 @@
 """Bank class testing."""
 
-from src.utils.bank import BankAccount
+from app.main.bank import BankAccount
 
 account = BankAccount()
 
