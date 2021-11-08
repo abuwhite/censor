@@ -55,7 +55,7 @@
     - name: Clone git repository
       git:
         repo: https://github.com/znhv/censor
-        dest: /src/app
+        dest: /src/backend
         clone: yes
         update: yes
 
@@ -69,4 +69,4 @@
 
     - name: Run application
       docker_compose:
-        project_src: /src/app
+        project_src: /src/backend
