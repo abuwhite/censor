@@ -14,6 +14,9 @@ up:
 down:
 	docker-compose down
 
+build:
+	docker-compose build
+
 
 debug:
 	FLASK_APP=app.py \
