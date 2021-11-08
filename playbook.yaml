@@ -1,0 +1,72 @@
+- hosts: all
+  become: yes
+  gather_facts: false
+  tasks:
+    - name: Install aptitude using apt
+      ansible.builtin.apt:
+        name: aptitude
+        state: latest
+        update_cache: yes
+        force_apt_get: yes
+
+    - name: Install required system packages
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: latest
+        update_cache: yes
+      loop:
+        - git
+        - apt-transport-https
+        - ca-certificates
+        - curl
+        - software-properties-common
+        - python3-pip
+        - virtualenv
+        - python3-setuptools
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu bionic stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      ansible.builtin.apt:
+        name: docker-ce
+        state: latest
+
+    - name: Install Docker-compose
+      get_url:
+        url: https://github.com/docker/compose/releases/download/v2.1.0/docker-compose-linux-x86_64
+        dest: /usr/local/bin/docker-compose
+        mode: 0755
+
+    - name: Install docker and docker-compose Module for Python
+      pip:
+        name: "{{ item }}"
+      loop:
+        - docker
+        - docker-compose
+
+    - name: Clone git repository
+      git:
+        repo: https://github.com/znhv/censor
+        dest: /src/app
+        clone: yes
+        update: yes
+
+    - name: Update apt and install ansible
+      ansible.builtin.apt:
+        name: ansible
+        state: latest
+
+    - name: Install ansible-galaxy collection docker-compose
+      shell: ansible-galaxy collection install community.docker
+
+    - name: Run application
+      docker_compose:
+        project_src: /src/app

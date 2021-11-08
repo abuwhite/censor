@@ -5,6 +5,9 @@
 # http://www.opensource.org/licenses/MIT-license
 # Copyright (c) 2021 Boris Zhenikhov
 
+run-playbook:
+	ansible-playbook -i production.ini -u ubuntu playbook.yaml
+
 debug:
 	FLASK_APP=app.py \
 	FLASK_ENV=development \
