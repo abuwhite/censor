@@ -8,6 +8,13 @@
 run-playbook:
 	ansible-playbook -i production.ini -u ubuntu playbook.yaml
 
+up:
+	docker-compose up -d
+
+down:
+	docker-compose down
+
+
 debug:
 	FLASK_APP=app.py \
 	FLASK_ENV=development \
