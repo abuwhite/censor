@@ -24,7 +24,7 @@ ENV VIRTUAL_ENV=/home/app/venv
 RUN python -m venv $VIRTUAL_ENV
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 RUN export FLASK_APP=app.py
-RUN pip install -r requirements.txt
+RUN pip3 install -r requirements.txt
 
 # define the port number the container should expose
 EXPOSE 5000
