@@ -1,6 +1,6 @@
 """Main module test."""
 
-from flask import Flask, request
+from backend import Flask, request
 
 app = Flask(__name__)
 
