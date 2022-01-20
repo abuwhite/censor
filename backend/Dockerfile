@@ -1,32 +1,13 @@
-FROM python:3.9.2-alpine
+FROM python:3.7.2-stretch
 
-# upgrade pip
-RUN pip install --upgrade pip
+# Set the working directory to /app
+WORKDIR /app
 
-# get curl for healthchecks
-RUN apk add curl
+# Copy the current directory contents into the container at /app
+ADD . /app
 
-# permissions and nonroot user for tightened security
-RUN adduser -D nonroot
-RUN mkdir /home/app/ && chown -R nonroot:nonroot /home/app
-RUN mkdir -p /var/log/backend-app && touch /var/log/backend-app/backend-app.err.log && touch /var/log/backend-app/backend-app.out.log
-RUN chown -R nonroot:nonroot /var/log/backend-app
-WORKDIR /home/app
-USER nonroot
-
-# copy all the files to the container
-COPY --chown=nonroot:nonroot . .
-
-# venv
-ENV VIRTUAL_ENV=/home/app/venv
-
-# python setup
-RUN python -m venv $VIRTUAL_ENV
-ENV PATH="$VIRTUAL_ENV/bin:$PATH"
-RUN export FLASK_APP=app.py
+# Install the dependencies
 RUN pip install -r requirements.txt
 
-# define the port number the container should expose
-EXPOSE 5000
-
-CMD ["python", "app.py"]
+# run the command to start uWSGI
+CMD ["uwsgi", "app.ini"]

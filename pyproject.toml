@@ -9,7 +9,7 @@ license = "MIT"
 readme = "README.md"
 
 packages = [
-  { include = "src" },
+  { include = "backend" },
 ]
 
 [tool.poetry.dependencies]
@@ -19,7 +19,7 @@ pytest = "^6.2.5"
 Flask-Testing = "^0.8.1"
 Babel = "^2.9.1"
 Flask = "^2.0.2"
-gunicorn = "^20.1.0"
+uWSGI = "^2.0.20"
 
 [tool.poetry.dev-dependencies]
 

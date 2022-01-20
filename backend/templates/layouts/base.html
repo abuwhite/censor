@@ -12,10 +12,15 @@
 </head>
 <body>
     <div class="header">
-      <a href="#default" class="logo">/censor</a>
+      <a href="{{ url_for('home') }}" class="logo">/censor</a>
       <div class="header-right">
         <a href="#home">Поддержать</a>
         <a href="#contact">О проекте</a>
+        {% if current_user.is_anonymous %}
+        <a href="{{ url_for('login') }}">Войти</a>
+        {% else %}
+        <a href="{{ url_for('logout') }}">Выйти</a>
+        {% endif %}
       </div>
     </div>
     <div class="section">

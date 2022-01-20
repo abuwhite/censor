@@ -1,0 +1,50 @@
+{% extends 'layouts/base.html' %}
+
+{% block head %}
+<title>Register</title>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="columns is-vcentered">
+            <div class="column is-6 is-5-fullhd is-offset-1-fullhd">
+                <div class="block">
+                    <form action="" method="post">
+                        <div class="field">
+                           {{ form.hidden_tag() }}
+                            <h2 class="h2">Вход</h2>
+                            <div class="field has-addons has-icons-right">
+                                <div class="control is-expanded">
+                                    {{ form.email(placeholder="Email", class="input is-medium") }}
+                                </div>
+                                {% for error in form.email.errors %}
+                                 <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+                            <div class="field has-addons has-icons-right">
+                                <div class="control is-expanded">
+                                    {{ form.password(placeholder="Password", class="input is-medium") }}
+                                </div>
+                                {% for error in form.password.errors %}
+                                  <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+
+
+                            <p>{{ form.remember() }} {{ form.remember.label }}</p>
+
+                            <h4 class="h4"><a href="{{ url_for('register') }}">Зарегистрироваться</a></h4>
+                            <button class="button is-info is-large is-fullwidth" type="submit">Войти</button>
+                            <button class="button is-info is-large is-fullwidth"><a href="{{ url_for('register') }}">Зарегистрироваться</a></button>
+
+                            {% for message in get_flashed_messages() %}
+                                <p style="color: red;">Error : {{ message }}</p>
+                            {% endfor %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
