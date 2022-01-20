@@ -9,7 +9,7 @@ from forms import RegistrationForm, LoginForm
 
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 
-from flask import render_template, request, redirect, Flask, url_for
+from flask import render_template, request, redirect, Flask, url_for, flash
 
 from main.bank import BankAccount
 from babel import numbers
@@ -69,7 +69,7 @@ def login():
             login_user(user)
             next = request.args.get("next")
             return redirect(next or url_for('home'))
-        flash('Invalid email address or Password.')
+        flash('Неверный адрес электронной почты или пароль.')
     return render_template('main/login-new.html', form=form)
 
 

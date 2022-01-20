@@ -65,6 +65,28 @@ body {
   margin-bottom: 16px;
 }
 
+.button {
+    font-size: 1.125rem;
+    height: 2.375em;
+    border-width: 2px;
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    padding-top: calc(0.375em - 2px);
+    padding-bottom: calc(0.375em - 2px);
+    padding-left: calc(0.875em - 2px);
+    padding-right: calc(0.875em - 2px);
+    font-weight: 500;
+    transition-duration: 86ms;
+}
+
+.button.is-light {
+    background-color: whitesmoke;
+    border-color: transparent;
+    color: #363636;
+}
+
 .button.is-info {
   border-radius: 12px;
   border-color: #fff;

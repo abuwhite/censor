@@ -12,34 +12,42 @@
                     <form action="" method="post">
                         <div class="field">
                            {{ form.hidden_tag() }}
-                            <h2 class="h2">Вход</h2>
+                            <label class="label">Вход</label>
                             <div class="field has-addons has-icons-right">
                                 <div class="control is-expanded">
-                                    {{ form.email(placeholder="Email", class="input is-medium") }}
+                                    {{ form.email(placeholder="Почта", class="input is-medium") }}
                                 </div>
                                 {% for error in form.email.errors %}
                                  <p>{{ error }}</p>
                                 {% endfor %}
                             </div>
 
-                            <div class="field has-addons has-icons-right">
+                            <div class="field has-icons-right">
                                 <div class="control is-expanded">
-                                    {{ form.password(placeholder="Password", class="input is-medium") }}
+                                    {{ form.password(placeholder="Пароль", class="input is-medium") }}
                                 </div>
                                 {% for error in form.password.errors %}
                                   <p>{{ error }}</p>
                                 {% endfor %}
                             </div>
 
+                            <div class=content>
+                                <label for="remember" class="checkbox">
+                                  <input checked id="remember" name="remember" required type="checkbox">
+                                  Запомнить меня
+                                </label>
+                            </div>
 
-                            <p>{{ form.remember() }} {{ form.remember.label }}</p>
-
-                            <h4 class="h4"><a href="{{ url_for('register') }}">Зарегистрироваться</a></h4>
-                            <button class="button is-info is-large is-fullwidth" type="submit">Войти</button>
-                            <button class="button is-info is-large is-fullwidth"><a href="{{ url_for('register') }}">Зарегистрироваться</a></button>
-
+                            <div class="field is-grouped">
+                                <div class="control">
+                                    <button class="button is-info is-medium" type="submit">Войти</button>
+                                </div>
+                                <div class="control">
+                                    <a class="button is-light is-medium" href="{{ url_for('register') }}">Зарегистрироваться</a>
+                                </div>
+                            </div>
                             {% for message in get_flashed_messages() %}
-                                <p style="color: red;">Error : {{ message }}</p>
+                                <p style="color: red;">Ошибка : {{ message }}</p>
                             {% endfor %}
                         </div>
                     </form>
