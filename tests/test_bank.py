@@ -1,6 +1,6 @@
 """Bank class testing."""
 
-from backend.main.bank import BankAccount
+from backend.main import BankAccount
 
 account = BankAccount()
 

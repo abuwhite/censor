@@ -70,7 +70,7 @@ def login():
             next = request.args.get("next")
             return redirect(next or url_for('home'))
         flash('Неверный адрес электронной почты или пароль.')
-    return render_template('main/login-new.html', form=form)
+    return render_template('main/sign-in.html', form=form)
 
 
 @login_required

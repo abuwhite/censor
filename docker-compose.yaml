@@ -1,28 +1,19 @@
+version: "3.7"
+
 services:
-  proxy:
-    build: nginx
+
+  flask:
+    build: backend
+    container_name: flask
     restart: always
     environment:
-      - FLASK_SERVER_ADDR=backend-app:8000
-    ports:
-      - 1337:80
-    depends_on:
-      - backend
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:80/health-check || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-  backend:
-    build: backend
-    restart: always
+      - APP_NAME=censor
     expose:
-      - 8000
+      - 8080
+
+  nginx:
+    build: nginx
+    container_name: nginx
+    restart: always
     ports:
-      - '8000:8000'
-    healthcheck:
-      test: ["CMD-SHELL", "curl --silent --fail localhost:8000/backend-health-check || exit 1"]
-      interval: 10s
-      timeout: 10s
-      retries: 3
-    command: gunicorn -w 3 -t 60 -b 0.0.0.0:8000 app:app
+      - "80:80"
