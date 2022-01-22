@@ -1,13 +1,16 @@
 {% extends 'layouts/base.html' %}
 
 {% block head %}
-<title>main</title>
+    <title>main</title>
 {% endblock %}
 
 {% block body %}
-<div class="container">
-  {% if current_user.username %}
-  <p>Добрый вечер, {{current_user.username}}</p>
-  {% endif %}
-</div>
+    <div class="container">
+        {% if current_user.username %}
+            <p>Здравствуйте, {{current_user.username}}</p>
+            <p>Status: {{status}}</p>
+            <p>Message: {{message}}</p>
+            <p>Container_id: {{container_id}}</p>
+        {% endif %}
+    </div>
 {% endblock %}

@@ -9,7 +9,8 @@ from forms import RegistrationForm, LoginForm
 
 from flask_login import LoginManager, UserMixin, login_user, current_user, logout_user, login_required
 
-from flask import render_template, request, redirect, Flask, url_for, flash
+from flask import render_template, request, redirect, Flask, url_for, flash, jsonify
+
 
 from main.bank import BankAccount
 from babel import numbers
@@ -56,7 +57,17 @@ def currency(num):
 
 @app.route('/home')
 def home():
-    return render_template('main/index.html')
+    js = jsonify({
+        'status': 'success',
+        'message': 'pong!',
+        'container_id': os.uname()[1]
+    })
+    return render_template(
+        'main/index.html',
+        status=js.json["status"],
+        message=js.json["message"],
+        container_id=js.json["container_id"],
+    )
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -70,7 +81,7 @@ def login():
             next = request.args.get("next")
             return redirect(next or url_for('home'))
         flash('Неверный адрес электронной почты или пароль.')
-    return render_template('main/sign-in.html', form=form)
+    return render_template('main/login.html', form=form)
 
 
 @login_required
@@ -100,7 +111,7 @@ def logout():
 @app.route("/")
 def index():
     """Generate start page."""
-    return render_template("main/registration_old.html")
+    return render_template("main/index.html")
 
 
 @app.route("/", methods=["POST"])
@@ -115,6 +126,14 @@ def index_post():
 
     return redirect("/info")
 
+
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({
+        'status': 'success',
+        'message': 'pong!',
+        'container_id': os.uname()[1]
+    })
 
 # @app.route("/", methods=["POST"])
 # def index_post():
